@@ -1,0 +1,12 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 35 35" style="enable-background:new 0 0 35 35;" xml:space="preserve">
+<style type="text/css">
+	.st3 { fill:#fc0d1b; }
+</style>
+<g>
+	<polygon class="st3" points="21.84,10.34 17.5,14.67 13.16,10.34 10.34,13.16 14.67,17.5 10.34,21.84 13.16,24.66 17.5,20.33
+		21.84,24.66 24.66,21.84 20.33,17.5 24.66,13.16 	"/>
+	<path class="st3" d="M17.5,0C7.85,0,0,7.85,0,17.5S7.85,35,17.5,35S35,27.15,35,17.5S27.15,0,17.5,0z M17.5,31
+		C10.06,31,4,24.94,4,17.5S10.06,4,17.5,4S31,10.06,31,17.5S24.94,31,17.5,31z"/>
+</g>
+</svg>
