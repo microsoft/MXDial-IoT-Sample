@@ -1,3 +1,41 @@
+# MXDial IoT Dev Kit Sample
+
+## Introduction
+1. intoduction to the solution
+1. links to architecture (iamge?)
+1. tech used
+
+## Environment Setup
+1. Prerequisites (VS/Azure subscription etc)
+1. Install npm / yarn
+1. install DevKit Environment
+
+## Cloud resource setup
+1. Azure Web App Setup (get pub prof)
+1. Azure IoT Hub Setup (also consumer group)
+1. Tweeter setup
+
+## Deploying web application
+1. update all app settings
+1. run script to build frontend and move to wwwroot
+1. deploy using publish prof
+
+## Deploying MX chip 
+1. connect to wifi
+1. update endpoint to get device id
+1. update password to access above endpoint (if we still have auth).
+1. deploy code
+
+## testing solution
+1. link to script documentation
+
+## troubleshooting
+1. common issues
+
+
+
+
+
 
 # Contributing
 
