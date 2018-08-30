@@ -27,7 +27,7 @@
 1. deploy code
 
 ## testing solution
-1. link to script documentation
+1. link to script documentation.
 
 ## troubleshooting
 1. common issues
