@@ -26,10 +26,10 @@
 1. update password to access above endpoint (if we still have auth).
 1. deploy code
 
-## testing solution
+## Testing solution
 1. link to script documentation.
 
-## troubleshooting
+## Troubleshooting
 1. common issues
 
 
