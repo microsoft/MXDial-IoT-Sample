@@ -1,36 +1,54 @@
-# MXDial IoT Dev Kit Sample
+# MXDial IoT DevKit Sample
 
 ## Introduction
-1. intoduction to the solution
-1. links to architecture (iamge?)
-1. tech used
+### intoduction to the solution
+### links to architecture (image?)
+### tech used
 
 ## Environment Setup
-1. Prerequisites (VS/Azure subscription etc)
-1. Install npm / yarn
-1. install DevKit Environment
+### Prerequisites 
+1. Windows 10.
+1. Visual Studio 2017 or newer ([Link](https://visualstudio.microsoft.com/)).
+1. Azure subscription for cloud resources ([Link](https://azure.microsoft.com/en-us/free/)).
+1. Twitter account ([Link](https://twitter.com/i/flow/signup))
+1. Yarn Package Manager ([Link](https://yarnpkg.com/en/docs/install#windows-stable))
+
+All additional software that is required will be installed via the Install IoT DevKit Environment script later in the guide.
+
+### Download Lab Material
+If you have git installed, you can run the following command: `git clone https://github.com/Microsoft/MXDial-IoT-Sample.git`
+
+Alternatively, you can download the material directly: [Download Material](https://github.com/Microsoft/MXDial-IoT-Sample/archive/master.zip)
+
+### Install IoT DevKit Environment
+The DevKit environment can be setup by running the installer located in the repository or by following a manual step-by-step process.
+
+To use the installer, run `install.cmd` located in `resources\devkit_install_win`. 
+
+>IMPORTANT!: This version of the installer was used at the time of development. For the latest environment setup or if you wish to complete this manually, follow the [Install development environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide.
+
 
 ## Cloud resource setup
-1. Azure Web App Setup (get pub prof)
-1. Azure IoT Hub Setup (also consumer group)
-1. Tweeter setup
+### Azure Web App Setup (get pub prof)
+### Azure IoT Hub Setup (also consumer group)
+### Tweeter setup
 
 ## Deploying web application
-1. update all app settings
-1. run script to build frontend and move to wwwroot
-1. deploy using publish prof
+### update all app settings
+### run script to build frontend and move to wwwroot
+### deploy using publish prof
 
 ## Deploying MX chip 
-1. connect to wifi
-1. update endpoint to get device id
-1. update password to access above endpoint (if we still have auth).
-1. deploy code
+### connect to wifi
+### update endpoint to get device id
+### update password to access above endpoint (if we still have auth).
+### deploy code
 
 ## Testing solution
-1. link to script documentation.
+### link to script documentation.
 
 ## Troubleshooting
-1. common issues
+###c ommon issues
 
 
 
