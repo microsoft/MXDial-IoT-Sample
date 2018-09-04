@@ -19,8 +19,8 @@ This tutorial will focus on setting up the required Azure services and consuming
 ### Prerequisites 
 1. Windows 10
 1. IoT DevKit MX Device
-1. Visual Studio 2017 or newer ([Link](https://visualstudio.microsoft.com/)).
-1. Azure subscription for cloud resources ([Link](https://azure.microsoft.com/en-us/free/)).
+1. Visual Studio 2017 or later ([Link](https://visualstudio.microsoft.com/)).
+1. Azure subscription ([Link](https://azure.microsoft.com/en-us/free/)).
 1. Twitter account ([Link](https://twitter.com/i/flow/signup))
 1. Yarn Package Manager ([Link](https://yarnpkg.com/en/docs/install#windows-stable))
 
