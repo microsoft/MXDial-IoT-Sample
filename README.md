@@ -7,7 +7,7 @@
 
 ## Environment Setup
 ### Prerequisites 
-1. Windows 10.
+1. Windows 10
 1. Visual Studio 2017 or newer ([Link](https://visualstudio.microsoft.com/)).
 1. Azure subscription for cloud resources ([Link](https://azure.microsoft.com/en-us/free/)).
 1. Twitter account ([Link](https://twitter.com/i/flow/signup))
@@ -21,11 +21,12 @@ If you have git installed, you can run the following command: `git clone https:/
 Alternatively, you can download the material directly: [Download Material](https://github.com/Microsoft/MXDial-IoT-Sample/archive/master.zip)
 
 ### Install IoT DevKit Environment
-The DevKit environment can be setup by running the installer located in the repository or by following a manual step-by-step process.
 
-To use the installer, run `install.cmd` located in `resources\devkit_install_win`. 
+To use the installer, you will need to [Download](https://devkitfiles.blob.core.windows.net/github/devkit_) and extract the `devkit_install_win.zip` file. 
 
->IMPORTANT!: This version of the installer was used at the time of development. For the latest environment setup or if you wish to complete this manually, follow the [Install development environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide.
+Once completed, run `install.cmd` from the extracted directory.
+
+>IMPORTANT!: This version of the installer was used at the time of development. For the latest environment setup or if you wish to complete this manually, follow the [Install Development Environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide.
 
 
 ## Cloud resource setup
