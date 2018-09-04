@@ -13,21 +13,19 @@ namespace MXApi.Helpers
   public static class Utilities
   {
     public const double GRAVITY = 9.81;
+
     public static double CalculateGForce(double x, double y, double z)
     {
       x = x / GRAVITY;
       y = y / GRAVITY;
       z = z / GRAVITY;
 
-      //the pythagorean theorem
       var pt = Math.Sqrt(x * x + y * y + z * z);
-
       return pt / 100; // need to devide into 100 due to prescision from MX. This will give us the real G
     }
 
     public static double CalculateSingleMGauss(double x, double y, double z)
     {
-      //the pythagorean theorem
       return Math.Sqrt(x * x + y * y + z * z);
     }
 
@@ -43,8 +41,9 @@ namespace MXApi.Helpers
       var deviceId = device.Id;
       var SharedAccessKey = device.Authentication.SymmetricKey.PrimaryKey;
 
-      return new DeviceDetails() {
-          ConnectionString = $"HostName={hostName};DeviceId={deviceId};SharedAccessKey={SharedAccessKey}"
+      return new DeviceDetails
+      {
+        ConnectionString = $"HostName={hostName};DeviceId={deviceId};SharedAccessKey={SharedAccessKey}"
       };
     }
 
@@ -55,9 +54,8 @@ namespace MXApi.Helpers
 
     public static double GetRandomSpeakingDecibel(double minimum, double maximum)
     {
-      Random random = new Random();
+      var random = new Random();
       return random.NextDouble() * (maximum - minimum) + minimum;
     }
   }
-
 }

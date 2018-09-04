@@ -13,12 +13,11 @@ namespace MXApi.Services
   {
     private List<double> _decibelPeaks = new List<double>();
 
-
     /// <summary>
-    /// NOTE: This is here for reference and not currently used in the app. We may store data from the chip in storage and run it through this in a future release.
+    /// NOTE: This is here for reference and not currently used in the app. We may store data 
+    /// from the chip in storage and run it through this in a future release.
     /// </summary>
     /// <param name="waveContent"></param>
-    /// <returns></returns>
     public double GetMaxDecibel(byte[] waveContent)
     {
       if (waveContent == null) return 0;
@@ -43,13 +42,12 @@ namespace MXApi.Services
         }
       }
 
-      var maxDecibel = _decibelPeaks.OrderByDescending(x => x).First();
-      return maxDecibel;
+      return _decibelPeaks.OrderByDescending(x => x).First();
     }
 
     public double GetMaxDecibel(string filePath)
     {
-      using (AudioFileReader reader = new AudioFileReader(filePath))
+      using (var reader = new AudioFileReader(filePath))
       {
         _decibelPeaks.Clear();
         var samplesPerSecond = reader.WaveFormat.SampleRate;
@@ -69,8 +67,7 @@ namespace MXApi.Services
         }
       }
 
-      var maxDecibel = _decibelPeaks.OrderByDescending(x => x).First();
-      return maxDecibel;
+      return _decibelPeaks.OrderByDescending(x => x).First();
     }
 
     private void onMaximumCalculated(object sender, MaxSampleEventArgs e)

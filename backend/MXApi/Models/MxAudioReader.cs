@@ -1,21 +1,17 @@
 ﻿using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
 
 namespace MXApi.Models
 {
   public class MxAudioReader : WaveStream, ISampleProvider
   {
-    private WaveStream readerStream; // the waveStream which we will use for all positioning
-    private readonly SampleChannel sampleChannel; // sample provider that gives us most stuff we need
-    private readonly int destBytesPerSample;
-    private readonly int sourceBytesPerSample;
-    private readonly long length;
-    private readonly object lockObject;
+    private readonly SampleChannel _sampleChannel; // sample provider that gives us most stuff we need
+    private readonly int _destBytesPerSample;
+    private readonly int _sourceBytesPerSample;
+    private readonly long _length;
+    private readonly object _lockObject = new object();
+    private volatile WaveStream _readerStream; // the waveStream which we will use for all positioning
 
     /// <summary>
     /// Initializes a new instance of MxAudioReader
@@ -23,12 +19,11 @@ namespace MXApi.Models
     /// <param name="inputStream">Audio stream</param>
     public MxAudioReader(Stream inputStream)
     {
-      lockObject = new object();
       CreateReaderStream(inputStream);
-      sourceBytesPerSample = (readerStream.WaveFormat.BitsPerSample / 8) * readerStream.WaveFormat.Channels;
-      sampleChannel = new SampleChannel(readerStream, false);
-      destBytesPerSample = 4 * sampleChannel.WaveFormat.Channels;
-      length = SourceToDest(readerStream.Length);
+      _sourceBytesPerSample = (_readerStream.WaveFormat.BitsPerSample / 8) * _readerStream.WaveFormat.Channels;
+      _sampleChannel = new SampleChannel(_readerStream, false);
+      _destBytesPerSample = 4 * _sampleChannel.WaveFormat.Channels;
+      _length = SourceToDest(_readerStream.Length);
     }
 
     /// <summary>
@@ -37,31 +32,31 @@ namespace MXApi.Models
     /// <param name="inputStream">Audio stream</param>
     private void CreateReaderStream(Stream inputStream)
     {
-      readerStream = new WaveFileReader(inputStream);
-      if (readerStream.WaveFormat.Encoding != WaveFormatEncoding.Pcm && readerStream.WaveFormat.Encoding != WaveFormatEncoding.IeeeFloat)
+      _readerStream = new WaveFileReader(inputStream);
+      if (_readerStream.WaveFormat.Encoding != WaveFormatEncoding.Pcm && _readerStream.WaveFormat.Encoding != WaveFormatEncoding.IeeeFloat)
       {
-        readerStream = WaveFormatConversionStream.CreatePcmStream(readerStream);
-        readerStream = new BlockAlignReductionStream(readerStream);
+        _readerStream = WaveFormatConversionStream.CreatePcmStream(_readerStream);
+        _readerStream = new BlockAlignReductionStream(_readerStream);
       }
     }
 
     /// <summary>
     /// WaveFormat of this stream
     /// </summary>
-    public override WaveFormat WaveFormat => sampleChannel.WaveFormat;
+    public override WaveFormat WaveFormat => _sampleChannel.WaveFormat;
 
     /// <summary>
     /// Length of this stream (in bytes)
     /// </summary>
-    public override long Length => length;
+    public override long Length => _length;
 
     /// <summary>
     /// Position of this stream (in bytes)
     /// </summary>
     public override long Position
     {
-      get { return SourceToDest(readerStream.Position); }
-      set { lock (lockObject) { readerStream.Position = DestToSource(value); } }
+      get { return SourceToDest(_readerStream.Position); }
+      set { lock (_lockObject) { _readerStream.Position = DestToSource(value); } }
     }
 
     /// <summary>
@@ -88,9 +83,9 @@ namespace MXApi.Models
     /// <returns>Number of samples read</returns>
     public int Read(float[] buffer, int offset, int count)
     {
-      lock (lockObject)
+      lock (_lockObject)
       {
-        return sampleChannel.Read(buffer, offset, count);
+        return _sampleChannel.Read(buffer, offset, count);
       }
     }
 
@@ -99,8 +94,8 @@ namespace MXApi.Models
     /// </summary>
     public float Volume
     {
-      get { return sampleChannel.Volume; }
-      set { sampleChannel.Volume = value; }
+      get { return _sampleChannel.Volume; }
+      set { _sampleChannel.Volume = value; }
     }
 
     /// <summary>
@@ -108,7 +103,7 @@ namespace MXApi.Models
     /// </summary>
     private long SourceToDest(long sourceBytes)
     {
-      return destBytesPerSample * (sourceBytes / sourceBytesPerSample);
+      return _destBytesPerSample * (sourceBytes / _sourceBytesPerSample);
     }
 
     /// <summary>
@@ -116,7 +111,7 @@ namespace MXApi.Models
     /// </summary>
     private long DestToSource(long destBytes)
     {
-      return sourceBytesPerSample * (destBytes / destBytesPerSample);
+      return _sourceBytesPerSample * (destBytes / _destBytesPerSample);
     }
 
     /// <summary>
@@ -127,12 +122,13 @@ namespace MXApi.Models
     {
       if (disposing)
       {
-        if (readerStream != null)
+        if (_readerStream != null)
         {
-          readerStream.Dispose();
-          readerStream = null;
+          _readerStream.Dispose();
+          _readerStream = null;
         }
       }
+
       base.Dispose(disposing);
     }
   }

@@ -296,11 +296,10 @@
     <Compile Include="Models\AuthenticationFailureResult.cs" />
     <Compile Include="Filters\BasicAuthorizeFilter.cs" />
     <Compile Include="Helpers\Utilities.cs" />
-    <Compile Include="Models\DeviceId.cs" />
     <Compile Include="Models\DeviceDetails.cs" />
     <Compile Include="Models\MetricsPayload.cs" />
     <Compile Include="Models\MxAudioReader.cs" />
-    <Compile Include="Models\MXPayload.cs" />
+    <Compile Include="Models\MxPayload.cs" />
     <Compile Include="Models\SampleAggregator.cs" />
     <Compile Include="Models\TextMessage.cs" />
     <Compile Include="Services\ITwitterService.cs" />
