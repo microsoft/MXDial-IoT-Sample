@@ -42,18 +42,53 @@ Once completed, run `install.cmd` from the extracted directory.
 
 
 ## Cloud resource setup
-### Azure Web App Setup 
-* Setup resource
-* Get publish profile
+
+### Create Azure Web App
+The Azure App Service is an integrated offering for building and hosting web apps.
+
+1. From the Azure Portal, go to the Create a resource blade.
+1. Search for ++App Service++.
+1. Select the first result and click the **Create** button.
+1. Provide the required information:
+  * App name: mxchip-<your initials>
+  * Use your existing resource group.
+  * Location: West US
+  * App name: build-bot-<your initials>
+1. Click on App service plan/Location.
+1. Click **Create** New.
+1. Provide the required information:
+  * App Service plan name: mxchip-lab-<your initials>
+  * Location: West US
+1. Click **OK** to save the new App service plan.
+1. Click **Create** to deploy the service. This step might take a few moments.
+
 ### Azure IoT Hub Setup (also consumer group)
 * Setup resource 
 * instructions on how to add consumer group called MXChip
+
 ### Tweeter setup
 
 ## Deploying web application
 ### update all app settings
 ### run script to build frontend and move to wwwroot
-### deploy using publish prof
+
+### Deploy to Azure from Visual Studio
+For the purposes of our lab, we'll be deploying directly from Visual Studio.
+
+[] Click on the current connected account in the top right corner of Visual Studio.
+[] Click on Account Settings....
+[] Click on the Sign out button.
+[] Click on the Sign in button.
+[] Login with the same credentials as you used for Azure.
+
+  > [!NOTE] This will connect Visual Studio to your Azure subscription.
+1. [] Click **Close**.
+1. [] Right-click the MxApi project.
+1. [] Click **Publish**.
+1. [] Mark the option Select Existing.
+1. [] Click **Publish**.
+1. [] Select the Web App previously created.
+1. [] Click **OK** and wait for the deployment to complete. This step might take a few minutes.
 
 ## Deploying MX chip 
 ### connect to wifi
