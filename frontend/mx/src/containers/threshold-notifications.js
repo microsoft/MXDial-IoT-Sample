@@ -3,7 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 
 class ThresholdNotifications extends Component {
-  twitterAPI = `${process.env.REACT_APP_MX_API}/api/mx/tweet`;
+  twitterAPI = `${process.env.REACT_APP_MX_API}/api/mx/twitter/messages`;
 
   getNotificationMessage = () => {
     const { deviceId, trigger: { message }, thresholdValue } = this.props;

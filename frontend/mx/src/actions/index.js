@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import { createActions } from 'redux-actions';
 
 const actions = createActions({
