@@ -47,8 +47,9 @@ namespace MXApi
       // SigR configuration
       var sigConfiguration = new HubConfiguration { EnableJSONP = true };
 
-      // TODO: is this required for prod?
+#if DEBUG
       app.UseCors(CorsOptions.AllowAll);
+#endif
 
       app.MapSignalR(sigConfiguration);
       app.UseWebApi(config);

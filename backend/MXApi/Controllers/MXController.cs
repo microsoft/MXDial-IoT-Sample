@@ -26,11 +26,18 @@ namespace MXApi.Controllers
 
     [Route("hub")]
     [HttpPost]
-    public HttpResponseMessage TestHub([FromBody] MxPayload payload)
+    public HttpResponseMessage PublishToHub([FromBody] MxPayload payload)
     {
       var hubContext = GlobalHost.ConnectionManager.GetHubContext<MessageHub>();
       hubContext.Clients.All.Message(JsonConvert.SerializeObject(payload));
 
+      return Request.CreateResponse(HttpStatusCode.OK);
+    }
+
+    [Route("")]
+    [HttpGet]
+    public HttpResponseMessage Get()
+    {
       return Request.CreateResponse(HttpStatusCode.OK);
     }
 

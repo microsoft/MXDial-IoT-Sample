@@ -143,9 +143,6 @@
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAzure.Storage.9.0.0\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="NAudio, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NAudio.1.8.4\lib\net35\NAudio.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -298,9 +295,7 @@
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Models\DeviceDetails.cs" />
     <Compile Include="Models\MetricsPayload.cs" />
-    <Compile Include="Models\MxAudioReader.cs" />
     <Compile Include="Models\MxPayload.cs" />
-    <Compile Include="Models\SampleAggregator.cs" />
     <Compile Include="Models\TextMessage.cs" />
     <Compile Include="Services\ITwitterService.cs" />
     <Compile Include="Services\MessagingService.cs" />
@@ -311,7 +306,6 @@
     <Compile Include="Resolvers\NinjectResolver.cs" />
     <Compile Include="Services\IIoTHubService.cs" />
     <Compile Include="Services\IoTHubService.cs" />
-    <Compile Include="Services\NAudioService.cs" />
     <Compile Include="Services\TwitterService.cs" />
     <Compile Include="SigR\MessageHub.cs" />
     <Compile Include="Startup.cs" />
