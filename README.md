@@ -1,19 +1,30 @@
 # MXDial IoT DevKit Sample
 
+In this PaaS demo solution you will setup and connect an Azure IoT DevKit device to the Azure IoT Hub and view sensor readings in a custom web application. The purpose of the demo is to showcase how the Azure IoT Hub is able to process messages in real-time from tangible devices. The demo also covers communicating to the device via Direct Methods and integrating to 3rd party API’s.
+
+This repository contains a step-by-step guide on how to deploy your own instance of the demo. 
+
 ## Introduction
-### intoduction to the solution
-### links to architecture (image?)
-### tech used
+
+The source code in this repository contains the following:
+* React Frontend Web Application
+* .NET WebApi
+* C++ Arduino Project
+
+This tutorial will focus on setting up the required Azure services and consuming them within each of the applications to create an e2e solution that is focussed around the Azure IoT Hub. The below image outlines the high-level architecture of the solution.
+
+![](https://devkitfiles.blob.core.windows.net/github/paas-arch.png)
 
 ## Environment Setup
 ### Prerequisites 
 1. Windows 10
+1. IoT DevKit MX Device
 1. Visual Studio 2017 or newer ([Link](https://visualstudio.microsoft.com/)).
 1. Azure subscription for cloud resources ([Link](https://azure.microsoft.com/en-us/free/)).
 1. Twitter account ([Link](https://twitter.com/i/flow/signup))
 1. Yarn Package Manager ([Link](https://yarnpkg.com/en/docs/install#windows-stable))
 
-All additional software that is required will be installed via the Install IoT DevKit Environment script later in the guide.
+All additional software that is required will be installed via the Install IoT DevKit Environment step later in the guide.
 
 ### Download Lab Material
 If you have git installed, you can run the following command: `git clone https://github.com/Microsoft/MXDial-IoT-Sample.git`
