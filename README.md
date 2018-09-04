@@ -27,6 +27,7 @@ This tutorial will focus on setting up the required Azure services and consuming
 All additional software that is required will be installed via the Install IoT DevKit Environment step later in the guide.
 
 ### Download Lab Material
+
 If you have git installed, you can run the following command: `git clone https://github.com/Microsoft/MXDial-IoT-Sample.git`
 
 Alternatively, you can download the material directly: [Download Material](https://github.com/Microsoft/MXDial-IoT-Sample/archive/master.zip)
@@ -41,8 +42,12 @@ Once completed, run `install.cmd` from the extracted directory.
 
 
 ## Cloud resource setup
-### Azure Web App Setup (get pub prof)
+### Azure Web App Setup 
+* Setup resource
+* Get publish profile
 ### Azure IoT Hub Setup (also consumer group)
+* Setup resource 
+* instructions on how to add consumer group called MXChip
 ### Tweeter setup
 
 ## Deploying web application
