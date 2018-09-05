@@ -38,12 +38,13 @@ To use the installer, you will need to [Download](https://devkitfiles.blob.core.
 
 Once completed, run `install.cmd` from the extracted directory.
 
->IMPORTANT!: This version of the installer was used at the time of development. For the latest environment setup or if you wish to complete this manually, follow the [Install Development Environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide.
+> [!ALERT]: This version of the installer was used at the time of development. For the latest environment setup or if you wish to complete this manually, follow the [Install Development Environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide.
 
 
-## Cloud resource setup
+## Cloud resources setup
 
 ### Create Azure Web App
+
 The Azure App Service is an integrated offering for building and hosting web apps.
 
 1. From the Azure Portal, go to the **Create a resource** option.
@@ -63,16 +64,65 @@ The Azure App Service is an integrated offering for building and hosting web app
 1. Click **OK** to save the new App service plan.
 1. Click **Create** to deploy the service. This step might take a few moments.
 
-### Azure IoT Hub Setup (also consumer group)
-* Setup resource 
-* instructions on how to add consumer group called MXChip
-* Get the connection script
+### Create an Azure IoT Hub
 
-### Tweeter setup
+1. From the Azure Portal, go to the **Create a resource** option.
+1. Search for ++IoT Hub++.
+1. Select the first result and click the **Create** button.
+1. Provide the required information:
+  * Subscription: select your subscription.
+  * Select the resource group previously created: `mxchip-lab-<your initials>`.
+  * Region: `West US`.
+  * Name: `mxhub-<yourinitials>`.
+1. Click on *Next: Size and scale*.
+  * Pricing and scale tier: select F1(Free tier) if available, otherwise select S1(Standard).
+1. Click on **Review + create**.
+1. Review your IoT hub information, then click **Create**. This process might take a few minutes.
+
+### Add a consumer group to your IoT Hub
+
+Consumer groups are used by applications to pull data from Azure IoT Hub. To add a consumer group to your IoT hub, follow these steps:
+
+1. In the Azure portal, go to **All Resources** in the left pane and **search** for your IoT Hub: `mxhub-<yourinitials>`.
+1. **Click** on the resource to open it.
+1. In the left pane, click **Endpoints**, select **Events** on the middle pane, look for the Consumer groups on the right pane.
+1. Add a new consumer group with the name `mxchip` and then click **Save**.
+
+### Get the connection script
+
+1. Open your IoT Hub resource in Azure.
+1. In the left pane, click **Shared access policies** and select **iothubowner** on the middle pane.
+1. Copy the value of **Connection string—primary key** in a Notepad as you will need it later.
+
+### Twitter setup
+
+Create a Twitter App and get the following settings:
+1. Apply for a [Twitter developer account](https://developer.twitter.com/en/apply/user) and wait for approval.
+1. Once approved, you will be able to create new apps from [developer.twitter.com](https://developer.twitter.com/).
+1. Create a new App and provide the application details.
+  > [!NOTE] you can skip the callback url as we won't be using OAuth authentication. Follow [this link](https://developer.twitter.com/en/docs/basics/developer-portal/guides/apps) to get more information about creating Twitter Apps.
+1. Get the following information from the **Keys and Access Tokens** tab:
+  * Consumer Key (API Key)
+  * Consumer Secret (API Secret)
+  * Access token: Create a new one with `Read and Write` access.
+  * Access token secret
+  > [!NOTE] Copy these values as you will need them later.
 
 ## Deploying web application
-### update all app settings
-### Run script to build frontend and move to wwwroot
+
+### Update all app settings
+
+1. Go to **Visual Studio** and open the **Web.config** file.
+1. Use the information previously obtained to complete the settings that will be used to connect to your twitter:
+  * TwitterAccountUrl: `https://twitter.com/<your_account_name>`
+  * TwitterConsumerKey
+  * TwitterConsumerSecret
+  * TwitterAccessToken
+  * TwitterAccessTokenSecret
+1. Add the connection string for the IoT Hub:
+  * IoTHubConnectionString
+
+### Build the frontend
 
 1. Open a **Terminal** window and navigate to `frontend/mx`.
 1. Run the following commands:
@@ -82,6 +132,7 @@ The Azure App Service is an integrated offering for building and hosting web app
 1. Copy the contents of the **build** directory to `backend/MXApi/wwwroot`
 
 ### Deploy to Azure from Visual Studio
+
 For the purposes of our lab, we'll be deploying directly from Visual Studio.
 
 1. Open **Visual Studio** from the Start Menu.
@@ -102,6 +153,7 @@ For the purposes of our lab, we'll be deploying directly from Visual Studio.
 1. Click **OK** and wait for the deployment to complete. This step might take a few minutes.
 
 ## Deploying Arduino Solution to the MX Chip.
+
 ### Connect to WiFi
 1. Connect the Micro-USB end to the IoT DevKit.
 1. Connect the USB end to your computer.
