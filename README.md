@@ -18,7 +18,7 @@ This tutorial will focus on setting up the required Azure services and consuming
 ## Environment Setup
 ### Prerequisites 
 1. Windows 10
-1. IoT DevKit MX Device
+1. MXChip IoT DevKit AZ3166 ([Link](http://mxchip.com/az3166))
 1. Visual Studio 2017 or later ([Link](https://visualstudio.microsoft.com/)).
 1. Azure subscription ([Link](https://azure.microsoft.com/en-us/free/)).
 1. Twitter account ([Link](https://twitter.com/i/flow/signup))
@@ -90,8 +90,30 @@ For the purposes of our lab, we'll be deploying directly from Visual Studio.
 1. [] Select the Web App previously created.
 1. [] Click **OK** and wait for the deployment to complete. This step might take a few minutes.
 
-## Deploying MX chip 
-### connect to wifi
+## Deploying Arduino Solution to the MX Chip.
+### Connect to WiFi
+1. Connect the Micro-USB end to the IoT DevKit.
+1. Connect the USB end to your computer.
+1. The green LED for power confirms the connection.
+
+![](https://devkitfiles.blob.core.windows.net/github/wifi-2.jpg)
+
+4. Hold down button B, push and release the reset button, and then release button B. Your IoT DevKit enters AP mode for configuring the Wi-Fi connection. The screen displays the service set identifier (SSID) of the IoT DevKit and the configuration portal IP address:
+
+![](https://devkitfiles.blob.core.windows.net/github/wifi-3.jpg)
+
+5. Use a Web browser on a different Wi-Fi enabled device (computer or mobile phone) to connect to the IoT DevKit SSID displayed in the previous step. If it asks for a password, leave it empty.
+
+![](https://devkitfiles.blob.core.windows.net/github/wifi-4.jpg)
+
+6. Open 192.168.0.1 in the browser. Select the Wi-Fi network that you want the IoT DevKit to connect to, type the password for the Wi-Fi conection, and then click Connect.
+
+![](https://devkitfiles.blob.core.windows.net/github/wifi-5.jpg)
+
+7. The IoT DevKit reboots in a few seconds. You then see the Wi-Fi name and assigned IP.
+
+![](https://devkitfiles.blob.core.windows.net/github/wifi-6.jpg)
+
 ### update endpoint to get device id
 ### update password to access above endpoint (if we still have auth).
 ### deploy code
