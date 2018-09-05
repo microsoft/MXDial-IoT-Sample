@@ -12,17 +12,17 @@ namespace MXApi.Services
   {
     private TwitterService _twitterService;
 
-    public TwitterIoTService()
-    {
-      var consumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"];
-      var consumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"];
-      var accessToken = ConfigurationManager.AppSettings["TwitterAccessToken"]; ;
-      var accessTokenSecret = ConfigurationManager.AppSettings["TwitterAccessTokenSecret"]; ;
-      CreateAuthenticatedService(consumerKey, consumerSecret, accessToken, accessTokenSecret);
-    }
-
     public void Post(string message)
     {
+      if (_twitterService == null)
+      {
+        var consumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"];
+        var consumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"];
+        var accessToken = ConfigurationManager.AppSettings["TwitterAccessToken"]; ;
+        var accessTokenSecret = ConfigurationManager.AppSettings["TwitterAccessTokenSecret"]; ;
+        CreateAuthenticatedService(consumerKey, consumerSecret, accessToken, accessTokenSecret);
+      }
+
       _twitterService.SendTweet(new SendTweetOptions { Status = message });
     }
 

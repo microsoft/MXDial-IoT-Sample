@@ -33,9 +33,10 @@ namespace MXApi.Services
       }
       catch (Exception e)
       {
-        Trace.TraceError(e.ToString());
+        Trace.TraceError($"Failed to invoke device method: {e}");
         return false;
       }
+
       return true;
     }
 
@@ -45,12 +46,12 @@ namespace MXApi.Services
       try
       {
         device = await _registryManager.AddDeviceAsync(new Device(deviceId));
-        Trace.TraceInformation($"Created Device: {deviceId}" );
+        Trace.TraceInformation($"Created device: {deviceId}" );
       }
       catch (DeviceAlreadyExistsException)
       {
         device = await _registryManager.GetDeviceAsync(deviceId);
-        Trace.TraceInformation($"Retreived Existing Device: {deviceId}");
+        Trace.TraceInformation($"Retrieved existing device: {deviceId}");
       }
 
       return device;

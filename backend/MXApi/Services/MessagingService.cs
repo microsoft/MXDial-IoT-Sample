@@ -15,7 +15,7 @@ using static MXApi.Helpers.Utilities;
 
 namespace MXApi.Services
 {
-  public class MessagingService : IDisposable
+  public class MessagingService
   {
     private static readonly Random _rand = new Random();
     private EventHubClient _eventHubClient;
@@ -45,22 +45,15 @@ namespace MXApi.Services
       {
         if (!(e.InnerException is OperationCanceledException))
         {
-          Trace.TraceError(e.Message);
+          Trace.TraceError($"An error occurred while processing messages: {e}");
           throw;
         }
       }
     }
 
-    public void Dispose()
-    {
-      _eventHubClient = null;
-      _hubContext = null;
-    }
-
     private EventHubClient CreateClient()
     {
       MessagingFactory factory = MessagingFactory.CreateFromConnectionString(ConfigurationManager.AppSettings["IoTHubConnectionString"] + ";TransportType=Amqp");
-
       factory.RetryPolicy = new RetryExponential(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(20), 3);
 
       return factory.CreateEventHubClient(ConfigurationManager.AppSettings["IotHubD2CEndpoint"]);
@@ -87,14 +80,14 @@ namespace MXApi.Services
 
           var mgauss = CalculateSingleMGauss(fromDeviceObject.MagX, fromDeviceObject.MagY, fromDeviceObject.MagZ);
 
-          //for now we are just going to simulate a DB reading as the sound file is too large to be sent in a message. 
+          // We are just going to simulate a DB reading as the sound file is too large to be sent in a message
           var decibel = 0.0;
           if (fromDeviceObject.SoundRecorded)
           {
             decibel = GetRandomSpeakingDecibel(Constants.LowSpeakingDbValue, Constants.HighSpeakingDbValue);
           }
 
-          var metricsPayload = new MetricsPayload()
+          var metricsPayload = new MetricsPayload
           {
             Id = deviceId,
             Gravity = Math.Round(gForce, 3),
@@ -106,12 +99,13 @@ namespace MXApi.Services
           };
 
           var msg = JsonConvert.SerializeObject(metricsPayload);
-          Trace.TraceInformation(msg);
+          Trace.TraceInformation($"Publishing message: {msg}");
+
           _hubContext.Clients.All.Message(msg);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-          Trace.TraceError(e.ToString());
+          Trace.TraceError($"An error occurred while receiving messages: {e}");
         }
       }
     }

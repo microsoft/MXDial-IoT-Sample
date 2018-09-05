@@ -21,32 +21,35 @@ namespace MXApi
     {
       var config = new HttpConfiguration();
 
-      //config routes
+      // Configure routes
       config.MapHttpAttributeRoutes();
 
-      //enable swagger
+      // Enable Swagger
       config.EnableSwagger(c => c.SingleApiVersion("v1", "MX API"))
         .EnableSwaggerUi();
 
-      //di
+      // Dependency injection
       config.DependencyResolver = new NinjectResolver(NinjectConfig.CreateKernel());
 
       config.Filters.Add(new BasicAuthorizeFilter());
 
-      //refresh the service every minute
+      // Refresh the service every fifteen minutes
       var registry = new Registry();
       registry.Schedule<EventHubProcessingJob>()
         .WithName("read-mx-messages")
         .ToRunOnceAt(DateTime.Now)
         .AndEvery(15).Minutes();
 
-      //init
+      // Initialize jobs
       JobManager.Initialize(registry);
       JobManager.JobException += (info) => JobManager.GetSchedule("read-mx-messages").Execute();
 
-      //sigR config
+      // SigR configuration
       var sigConfiguration = new HubConfiguration { EnableJSONP = true };
+
+#if DEBUG
       app.UseCors(CorsOptions.AllowAll);
+#endif
 
       app.MapSignalR(sigConfiguration);
       app.UseWebApi(config);

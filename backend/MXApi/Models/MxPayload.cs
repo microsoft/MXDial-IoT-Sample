@@ -2,7 +2,6 @@
 
 namespace MXApi.Models
 {
-
   public class MxPayload
   {
     [JsonProperty(PropertyName = "deviceId")]

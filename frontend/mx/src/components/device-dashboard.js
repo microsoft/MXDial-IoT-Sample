@@ -165,7 +165,7 @@ function sendMessage(device, message) {
   return axios({
     crossDomain: true,
     method: 'POST',
-    url: `${process.env.REACT_APP_MX_API}/api/mx/SendDeviceMessage`,
+    url: `${process.env.REACT_APP_MX_API}/api/mx/device-messages`,
     data: {
       deviceId: device.id,
       messageContents: message,
