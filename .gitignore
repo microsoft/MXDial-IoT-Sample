@@ -298,4 +298,4 @@ __pycache__/
 **/TESTS-*
 
 #other
-backend/IonicApp/wwwroot/*
+mxdevice/.build/

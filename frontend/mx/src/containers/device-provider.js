@@ -9,10 +9,9 @@ class DeviceProvider extends Component {
   componentDidMount() {
     // Clear any previous data
     window.sessionStorage.clear();
-
-    // Fetch device names
+     // Fetch device names
     axios
-      .get(`${process.env.REACT_APP_MX_API}/api/mx/GetDeviceId`)
+      .get(`${process.env.REACT_APP_MX_API}/api/mx`)
       .then(response => {
         let deviceId = response.headers && response.headers.deviceid;
         if (deviceId && typeof deviceId === 'string') {

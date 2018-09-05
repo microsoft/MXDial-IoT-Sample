@@ -48,10 +48,8 @@ class RandomDeviceEventGenerator {
     axios({
       crossDomain: true,
       method: 'POST',
-      url: `${process.env.REACT_APP_MX_API}/api/ionic/TestHub`,
+      url: `${process.env.REACT_APP_MX_API}/api/ionic/hub`,
       data: event,
-    }).then(() => {
-      // console.log('Event broadcast successful: ', event);  // eslint-disable-line
     });
   };
 

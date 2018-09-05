@@ -11,8 +11,8 @@ namespace MXApi.Jobs
   public class EventHubProcessingJob : IJob, IRegisteredObject, IDisposable
   {
     private static readonly object Lock = new object();
-    private static CancellationTokenSource tokenSource;
-    private static MessagingService _messagingService;
+    private static CancellationTokenSource _tokenSource;
+    private static volatile MessagingService _messagingService;
 
     private bool _shuttingDown;
 
@@ -29,15 +29,17 @@ namespace MXApi.Jobs
         lock (Lock)
         {
           if (_shuttingDown)
+          {
             return;
+          }
 
           CreateNewMessageService();
-          _messagingService.ReadMessages(tokenSource.Token);
+          _messagingService.ReadMessages(_tokenSource.Token);
         }
       }
       catch (Exception e)
       {
-        Trace.TraceError(e.ToString());
+        Trace.TraceError($"Failed to execute event hub processing job: {e}");
         throw;
       }
     }
@@ -59,23 +61,18 @@ namespace MXApi.Jobs
 
     private void CreateNewMessageService()
     {
-      if (_messagingService != null)
-      {
-        _messagingService.Dispose();
-        _messagingService = null;
-      }
-
       _messagingService = new MessagingService();
     }
 
     private void CancelExistingTasks()
     {
-      if (tokenSource != null)
+      if (_tokenSource != null)
       {
-        tokenSource.Cancel();
-        tokenSource.Dispose();
+        _tokenSource.Cancel();
+        _tokenSource.Dispose();
       }
-      tokenSource = new CancellationTokenSource();
+
+      _tokenSource = new CancellationTokenSource();
     }
   }
 }

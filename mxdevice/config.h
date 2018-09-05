@@ -12,9 +12,9 @@
 
 #define DIRECT_METHOD_NAME "message"
 
-#define DEVICE_CREDENTIAL_ENDPOINT "https://azureiothubmx.azurewebsites.net/api/mx/GetDeviceCredentials?deviceId="
+#define DEVICE_CREDENTIAL_ENDPOINT "https://azureiothubmx.azurewebsites.net/api/mx/device-credentials/"
 
 #define DEVICE_CREDENTIAL_ENDPOINT_AUTH "Basic dDpBenVyZQ=="
 
-// how many messages get sent to the hub before user has to press A to continue
+// How many messages get sent to the hub before user has to press A to continue
 #define MESSAGE_SEND_COUNT_LIMIT 350

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Net;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -12,13 +11,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http.Filters;
-using System.Web.Http.Results;
 
 namespace MXApi.Filters
 {
   public class BasicAuthorizeFilter : IAuthenticationFilter
   {
-    private string _password;
+    private readonly string _password;
 
     public BasicAuthorizeFilter()
     {
@@ -30,7 +28,7 @@ namespace MXApi.Filters
       get { return false; }
     }
 
-    public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
+    public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
     {
       HttpRequestMessage request = context.Request;
       AuthenticationHeaderValue authorization = request.Headers.Authorization;
@@ -40,13 +38,14 @@ namespace MXApi.Filters
         Tuple<string, string> userNameAndPasword = ExtractUserNameAndPassword(authorization.Parameter);
         string username = userNameAndPasword.Item1;
         string password = userNameAndPasword.Item2;
+
         // Check if login is correct
         if (IsAuthorized(username, password))
         {
           context.Principal = GetPrincipal(username, password);
           HttpContext.Current.Response.Headers.Add("Access-Control-Expose-Headers", Constants.DeviceIdHeader);
           HttpContext.Current.Response.Headers.Add(Constants.DeviceIdHeader, username);
-          return;
+          return Task.FromResult(0);
         }
       }
 
@@ -55,11 +54,11 @@ namespace MXApi.Filters
       HttpContext.Current.Response.Headers.Add(Constants.DeviceIdHeader, Constants.DefaultDeviceId);
 #else
       context.ErrorResult = new UnauthorizedResult(
-      new AuthenticationHeaderValue[] { new AuthenticationHeaderValue("Basic", "realm=Web") },
-      context.Request);
+        new AuthenticationHeaderValue[] { new AuthenticationHeaderValue("Basic", "realm=Web") },
+        context.Request);
 #endif
 
-      await Task.FromResult(0);
+      return Task.FromResult(0);
     }
 
     public Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
@@ -81,12 +80,11 @@ namespace MXApi.Filters
       Claim nameClaim = new Claim(ClaimTypes.Name, userName);
       List<Claim> claims = new List<Claim> { nameClaim };
 
-      // important to set the identity this way, otherwise IsAuthenticated will be false
+      // Important to set the identity this way, otherwise IsAuthenticated will be false
       // see: http://leastprivilege.com/2012/09/24/claimsidentity-isauthenticated-and-authenticationtype-in-net-4-5/
       ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
 
-      var principal = new ClaimsPrincipal(identity);
-      return principal;
+      return new ClaimsPrincipal(identity);
     }
 
     private static Tuple<string, string> ExtractUserNameAndPassword(string authorizationParameter)
@@ -97,8 +95,9 @@ namespace MXApi.Filters
       {
         credentialBytes = Convert.FromBase64String(authorizationParameter);
       }
-      catch (FormatException)
+      catch (FormatException e)
       {
+        Trace.TraceWarning($"Unable to extract authentication header: {e}");
         return null;
       }
 
@@ -106,8 +105,10 @@ namespace MXApi.Filters
       // However, the current draft updated specification for HTTP 1.1 indicates this encoding is infrequently
       // used in practice and defines behavior only for ASCII.
       Encoding encoding = Encoding.ASCII;
+
       // Make a writable copy of the encoding to enable setting a decoder fallback.
       encoding = (Encoding)encoding.Clone();
+
       // Fail on invalid bytes rather than silently replacing and continuing.
       encoding.DecoderFallback = DecoderFallback.ExceptionFallback;
       string decodedCredentials;
@@ -116,20 +117,22 @@ namespace MXApi.Filters
       {
         decodedCredentials = encoding.GetString(credentialBytes);
       }
-      catch (DecoderFallbackException)
+      catch (DecoderFallbackException e)
       {
+        Trace.TraceWarning($"Unable to decode authentication header: {e}");
         return null;
       }
 
-      if (String.IsNullOrEmpty(decodedCredentials))
+      if (string.IsNullOrEmpty(decodedCredentials))
       {
+        Trace.TraceWarning($"Unable to find authentication header");
         return null;
       }
 
       int colonIndex = decodedCredentials.IndexOf(':');
-
       if (colonIndex == -1)
       {
+        Trace.TraceWarning($"Unable to find colon in authentication header");
         return null;
       }
 

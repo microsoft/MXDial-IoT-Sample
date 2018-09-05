@@ -6,7 +6,6 @@ import DeviceDashboard from './device-dashboard';
 import Footer from '../containers/footer';
 import SetRule from '../containers/set-rule';
 import { DEVICE_IMAGE_MAP, DEFAULT_DEVICE_TYPE } from '../common/constants';
-// import value from 'common/test';
 
 const SetRuleModal = Modal(SetRule);
 

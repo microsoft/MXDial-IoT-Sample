@@ -62,7 +62,7 @@ class TriggerOverlay extends Component {
 
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_MX_API}/api/mx/TwitterAccount`)
+      .get(`${process.env.REACT_APP_MX_API}/api/mx/twitter`)
       .then(response => {
         if (response.data && typeof response.data === 'string') {
           this.setState({ twitterUrl: response.data });
