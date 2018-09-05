@@ -26,7 +26,7 @@ This tutorial will focus on setting up the required Azure services and consuming
 
 All additional software that is required will be installed via the Install IoT DevKit Environment step later in the guide.
 
-### Download Lab Material
+### Download Demo Material
 
 If you have git installed, you can run the following command: `git clone https://github.com/Microsoft/MXDial-IoT-Sample.git`
 
@@ -34,11 +34,7 @@ Alternatively, you can download the material directly: [Download Material](https
 
 ### Install IoT DevKit Environment
 
-To use the installer, you will need to [Download](https://devkitfiles.blob.core.windows.net/github/devkit_) and extract the `devkit_install_win.zip` file. 
-
-Once completed, run `install.cmd` from the extracted directory.
-
-> [!ALERT]: This version of the installer was used at the time of development. For the latest environment setup or if you wish to complete this manually, follow the [Install Development Environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide.
+ To install the DevKit environemnt, follow the [Install Development Environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide. 
 
 
 ## Cloud resources setup
@@ -51,14 +47,14 @@ The Azure App Service is an integrated offering for building and hosting web app
 1. Search for `Web App`.
 1. Select the first result and click the **Create** button.
 1. Provide the required information:
-  * App name: mxchip-<your initials>.
-  * Create a new resource group with the name: `mxchip-lab-<your initials>`.
+  * App name: `mxchip-<your initials>`.
+  * Create a new resource group with the name: `mxchip-demo-<your initials>`.
   * Location: `West US`.
   * OS: Windows.
 1. Click on App service plan/Location.
 1. Click **Create** New.
 1. Provide the required information:
-  * App Service plan name: `mxchip-lab-<your initials>`.
+  * App Service plan name: `mxchip-demo-<your initials>`.
   * Location: `West US`.
   * Pricing Tier: S1 Standard.
 1. Click **OK** to save the new App service plan.
@@ -71,7 +67,7 @@ The Azure App Service is an integrated offering for building and hosting web app
 1. Select the first result and click the **Create** button.
 1. Provide the required information:
   * Subscription: select your subscription.
-  * Select the resource group previously created: `mxchip-lab-<your initials>`.
+  * Select the resource group previously created: `mxchip-demo-<your initials>`.
   * Region: `West US`.
   * Name: `mxhub-<yourinitials>`.
 1. Click on *Next: Size and scale*.
@@ -133,7 +129,7 @@ Create a Twitter App and get the following settings:
 
 ### Deploy to Azure from Visual Studio
 
-For the purposes of our lab, we'll be deploying directly from Visual Studio.
+For the purposes of our demo, we'll be deploying directly from Visual Studio.
 
 1. Open **Visual Studio** from the Start Menu.
 1. Click **Open Project/Solution** and select `backend\MxDialBackend.sln`.
