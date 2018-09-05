@@ -48,7 +48,7 @@ Once completed, run `install.cmd` from the extracted directory.
 The Azure App Service is an integrated offering for building and hosting web apps.
 
 1. From the Azure Portal, go to the **Create a resource** option.
-1. Search for ++Web App++.
+1. Search for `Web App`.
 1. Select the first result and click the **Create** button.
 1. Provide the required information:
   * App name: mxchip-<your initials>.
@@ -58,7 +58,7 @@ The Azure App Service is an integrated offering for building and hosting web app
 1. Click on App service plan/Location.
 1. Click **Create** New.
 1. Provide the required information:
-  * App Service plan name: mxchip-lab-<your initials>.
+  * App Service plan name: `mxchip-lab-<your initials>`.
   * Location: `West US`.
   * Pricing Tier: S1 Standard.
 1. Click **OK** to save the new App service plan.
