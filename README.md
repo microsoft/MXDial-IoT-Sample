@@ -37,7 +37,7 @@ Alternatively, you can download the material directly: [Download Material](https
  To install the DevKit environemnt, follow the [Install Development Environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide. 
 
 
-## Cloud resources setup
+## Cloud Resources Setup
 
 ### Create Azure Web App
 
@@ -47,16 +47,16 @@ The Azure App Service is an integrated offering for building and hosting web app
 1. Search for `Web App`.
 1. Select the first result and click the **Create** button.
 1. Provide the required information:
-  * App name: `mxchip-<your initials>`.
-  * Create a new resource group with the name: `mxchip-demo-<your initials>`.
-  * Location: `West US`.
-  * OS: Windows.
+    * App name: `mxchip-<your initials>`.
+    * Create a new resource group with the name: `mxchip-demo-<your initials>`.
+    * Location: `West US`.
+    * OS: Windows.
 1. Click on App service plan/Location.
 1. Click **Create** New.
 1. Provide the required information:
-  * App Service plan name: `mxchip-demo-<your initials>`.
-  * Location: `West US`.
-  * Pricing Tier: S1 Standard.
+    * App Service plan name: `mxchip-demo-<your initials>`.
+    * Location: `West US`.
+    * Pricing Tier: S1 Standard.
 1. Click **OK** to save the new App service plan.
 1. Click **Create** to deploy the service. This step might take a few moments.
 
@@ -66,12 +66,12 @@ The Azure App Service is an integrated offering for building and hosting web app
 1. Search for ++IoT Hub++.
 1. Select the first result and click the **Create** button.
 1. Provide the required information:
-  * Subscription: select your subscription.
-  * Select the resource group previously created: `mxchip-demo-<your initials>`.
-  * Region: `West US`.
-  * Name: `mxhub-<yourinitials>`.
+    * Subscription: select your subscription.
+    * Select the resource group previously created: `mxchip-demo-<your initials>`.
+    * Region: `West US`.
+    * Name: `mxhub-<yourinitials>`.
 1. Click on *Next: Size and scale*.
-  * Pricing and scale tier: select F1(Free tier) if available, otherwise select S1(Standard).
+    * Pricing and scale tier: select F1(Free tier) if available, otherwise select S1(Standard).
 1. Click on **Review + create**.
 1. Review your IoT hub information, then click **Create**. This process might take a few minutes.
 
@@ -98,32 +98,32 @@ Create a Twitter App and get the following settings:
 1. Create a new App and provide the application details.
   > [!NOTE] you can skip the callback url as we won't be using OAuth authentication. Follow [this link](https://developer.twitter.com/en/docs/basics/developer-portal/guides/apps) to get more information about creating Twitter Apps.
 1. Get the following information from the **Keys and Access Tokens** tab:
-  * Consumer Key (API Key)
-  * Consumer Secret (API Secret)
-  * Access token: Create a new one with `Read and Write` access.
-  * Access token secret
+    * Consumer Key (API Key)
+    * Consumer Secret (API Secret)
+    * Access token: Create a new one with `Read and Write` access.
+    * Access token secret
   > [!NOTE] Copy these values as you will need them later.
 
-## Deploying web application
+## Deploying Web Application
 
 ### Update all app settings
 
 1. Go to **Visual Studio** and open the **Web.config** file.
 1. Use the information previously obtained to complete the settings that will be used to connect to your twitter:
-  * TwitterAccountUrl: `https://twitter.com/<your_account_name>`
-  * TwitterConsumerKey
-  * TwitterConsumerSecret
-  * TwitterAccessToken
-  * TwitterAccessTokenSecret
+    * TwitterAccountUrl: `https://twitter.com/<your_account_name>`
+    * TwitterConsumerKey
+    * TwitterConsumerSecret
+    * TwitterAccessToken
+    * TwitterAccessTokenSecret
 1. Add the connection string for the IoT Hub:
-  * IoTHubConnectionString
+    * IoTHubConnectionString
 
 ### Build the frontend
 
 1. Open a **Terminal** window and navigate to `frontend/mx`.
 1. Run the following commands:
-  * yarn install
-  * npm run build
+    * yarn install
+    * yarn run build
 1. Create a **wwwroot** directory in `backend/MXApi`.
 1. Copy the contents of the **build** directory to `backend/MXApi/wwwroot`
 
