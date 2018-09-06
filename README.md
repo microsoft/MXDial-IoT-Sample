@@ -63,7 +63,7 @@ The Azure App Service is an integrated offering for building and hosting web app
 ### Create an Azure IoT Hub
 
 1. From the Azure Portal, go to the **Create a resource** option.
-1. Search for ++IoT Hub++.
+1. Search for `IoT Hub`.
 1. Select the first result and click the **Create** button.
 1. Provide the required information:
     * Subscription: select your subscription.
@@ -96,7 +96,8 @@ Create a Twitter App and get the following settings:
 1. Apply for a [Twitter developer account](https://developer.twitter.com/en/apply/user) and wait for approval.
 1. Once approved, you will be able to create new apps from [developer.twitter.com](https://developer.twitter.com/).
 1. Create a new App and provide the application details.
-  > [!NOTE] you can skip the callback url as we won't be using OAuth authentication. Follow [this link](https://developer.twitter.com/en/docs/basics/developer-portal/guides/apps) to get more information about creating Twitter Apps.
+  > [!NOTE] you can skip the callback url as we won't be using authentication.
+  > [!NOTE] Follow [this link](https://developer.twitter.com/en/docs/basics/developer-portal/guides/apps) to get more information about creating Twitter Apps.
 1. Get the following information from the **Keys and Access Tokens** tab:
     * Consumer Key (API Key)
     * Consumer Secret (API Secret)
@@ -122,8 +123,8 @@ Create a Twitter App and get the following settings:
 
 1. Open a **Terminal** window and navigate to `frontend/mx`.
 1. Run the following commands:
-    * yarn install
-    * yarn run build
+  * yarn install
+  * yarn build
 1. Create a **wwwroot** directory in `backend/MXApi`.
 1. Copy the contents of the **build** directory to `backend/MXApi/wwwroot`
 
@@ -133,20 +134,19 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 
 1. Open **Visual Studio** from the Start Menu.
 1. Click **Open Project/Solution** and select `backend\MxDialBackend.sln`.
-1. Click on the current connected account in the top right corner of Visual Studio.
-1. Click on Account Settings....
-1. Click on the Sign out button.
-1. Click on the Sign in button.
-1. Login with the same credentials as you used for Azure.
-
-  > [!NOTE] This will connect Visual Studio to your Azure subscription.
-1. Click **Close**.
+1. Check your current connected account in the top right corner of Visual Studio.
+  > [!ALERT] Ensure you are signed in with the same credentials you used to sign in to Azure. This will connect Visual Studio to your Azure subscription.
 1. Right-click the MxApi project.
 1. Click **Publish**.
 1. Mark the option Select Existing.
 1. Click **Publish**.
 1. Select the Web App previously created.
 1. Click **OK** and wait for the deployment to complete. This step might take a few minutes.
+1. A new window will open in your browser with the published app.
+1. The web site will request credentials to access, use the following:
+  * For the username use your device code.
+  * Password: `Azure`.
+  > [!ALERT] Make sure that your device is on, otherwise you won't see anything in the web page.
 
 ## Deploying Arduino Solution to the MX Chip.
 
