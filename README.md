@@ -34,7 +34,7 @@ Alternatively, you can download the material directly: [Download Material](https
 
 ### Install IoT DevKit Environment
 
- To install the DevKit environemnt, follow the [Install Development Environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide. 
+ To install the DevKit environment, follow the [Install Development Environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide. 
 
 
 ## Cloud Resources Setup
