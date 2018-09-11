@@ -126,9 +126,9 @@ void setup()
   initWifi();
   if (!hasWifi)
   {
-    return;
+    return;   
   }
-  
+
   // Get MAC address and populate device id
   byte mac[6];
   WiFi.macAddress(mac);
@@ -152,6 +152,7 @@ void setup()
     device_conn_string = json_object_get_string(root_object, "ConnectionString");
     Serial.println("Get HTTP succeeded");
     Serial.println(device_conn_string);
+    Serial.println("after");
   }
   else
   {

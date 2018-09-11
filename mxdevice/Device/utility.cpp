@@ -143,7 +143,7 @@ void setMagAxes()
 
 float * setMessage(int messageId, char *payload, bool soundRecorded)
 {
-  float newValues[3];
+  static float newValues[3];
 
   JSON_Value *root_value = json_value_init_object();
   JSON_Object *root_object = json_value_get_object(root_value);

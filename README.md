@@ -39,6 +39,8 @@ Alternatively, you can download the material directly: [Download Material](https
 
 ## Cloud Resources Setup
 
+> NOTE: Throughout this setup you will be asked to add `<your intials>` as a way of uniquely identifying the resource you are creating. In the unlikely event the resource name has been taken, just add another random letter until it becomes unique.
+
 ### Create Azure Web App
 
 The Azure App Service is an integrated offering for building and hosting web apps.
@@ -75,7 +77,7 @@ The Azure App Service is an integrated offering for building and hosting web app
 1. Click on **Review + create**.
 1. Review your IoT hub information, then click **Create**. This process might take a few minutes.
 
-### Add a consumer group to your IoT Hub
+### Add a Consumer Group to your IoT Hub
 
 Consumer groups are used by applications to pull data from Azure IoT Hub. To add a consumer group to your IoT hub, follow these steps:
 
@@ -84,13 +86,13 @@ Consumer groups are used by applications to pull data from Azure IoT Hub. To add
 1. In the left pane, click **Endpoints**, select **Events** on the middle pane, look for the Consumer groups on the right pane.
 1. Add a new consumer group with the name `mxchip` and then click **Save**.
 
-### Get the connection script
+### Get the IoT Hub Connection String 
 
 1. Open your IoT Hub resource in Azure.
 1. In the left pane, click **Shared access policies** and select **iothubowner** on the middle pane.
 1. Copy the value of **Connection string—primary key** in a Notepad as you will need it later.
 
-### Twitter setup
+### Twitter Setup
 
 Create a Twitter App and get the following settings:
 1. Apply for a [Twitter developer account](https://developer.twitter.com/en/apply/user) and wait for approval.
@@ -105,27 +107,29 @@ Create a Twitter App and get the following settings:
     * Access token secret
   > [!NOTE] Copy these values as you will need them later.
 
-## Deploying Web Application
+## Deploying the Web Application
 
-### Update all app settings
+### Update App Settings
 
 1. Go to **Visual Studio** and open the **Web.config** file.
+1. Add the connection string for the IoT Hub:
+    * IoTHubConnectionString: `<your IoT Hub connection string>`
 1. Use the information previously obtained to complete the settings that will be used to connect to your twitter:
     * TwitterAccountUrl: `https://twitter.com/<your_account_name>`
-    * TwitterConsumerKey
-    * TwitterConsumerSecret
-    * TwitterAccessToken
-    * TwitterAccessTokenSecret
-1. Add the connection string for the IoT Hub:
-    * IoTHubConnectionString
+    * TwitterConsumerKey: `<your twitter consumer key>`
+    * TwitterConsumerSecret: `<your twitter consumer secret>`
+    * TwitterAccessToken: `<your twitter access token>`
+    * TwitterAccessTokenSecret: `<your twitter access token secret>`
 
-### Build the frontend
+> NOTE: We recommend leaving all over settings as the default value.
+
+### Build the Frontend
 
 1. Open a **Terminal** window and navigate to `frontend/mx`.
-1. Run the following commands:
+1. Run the following commands to output the frontend to a build directory:
   * yarn install
   * yarn build
-1. Create a **wwwroot** directory in `backend/MXApi`.
+1. Create a **wwwroot** directory in `backend/MXApi` folder.
 1. Copy the contents of the **build** directory to `backend/MXApi/wwwroot`
 
 ### Deploy to Azure from Visual Studio
@@ -135,20 +139,15 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 1. Open **Visual Studio** from the Start Menu.
 1. Click **Open Project/Solution** and select `backend\MxDialBackend.sln`.
 1. Check your current connected account in the top right corner of Visual Studio.
-  > [!ALERT] Ensure you are signed in with the same credentials you used to sign in to Azure. This will connect Visual Studio to your Azure subscription.
+  > NOTE: Ensure you are signed in with the same credentials you used to sign in to Azure. This will connect Visual Studio to your Azure subscription.
 1. Right-click the MxApi project.
 1. Click **Publish**.
 1. Mark the option Select Existing.
 1. Click **Publish**.
 1. Select the Web App previously created.
 1. Click **OK** and wait for the deployment to complete. This step might take a few minutes.
-1. A new window will open in your browser with the published app.
-1. The web site will request credentials to access, use the following:
-  * For the username use your device code.
-  * Password: `Azure`.
-  > [!ALERT] Make sure that your device is on, otherwise you won't see anything in the web page.
 
-## Deploying Arduino Solution to the MX Chip.
+## Deploying the Arduino Solution to the MX Chip.
 
 ### Connect to WiFi
 1. Connect the Micro-USB end to the IoT DevKit.
@@ -173,20 +172,39 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 
 ![](https://devkitfiles.blob.core.windows.net/github/wifi-6.jpg)
 
-### update endpoint to get device id
-### update password to access above endpoint (if we still have auth).
-### deploy code
+### Update the DevKit Solution
 
-## Testing solution
-### link to script documentation.
+1. Open VS Code then select `File > Open Workspace`.
+2. Navigate to the `mxdevice` directory from the source code and open the `project` Workspace.
+3. Open `config.h` and replace `<Web App URL>` with the Web App URL you created earlier. Ensure you do not modify `/api/mx/device-credentials/`. It should look like: `https://mxchip-<your initials>.azurewebsites.net/api/mx/device-credentials/`
+> NOTE: If you don’t have Arduino extension in VS Code installed, click the Install in the notification pane if prompted. If you modified your password in the web.config, you will need to convert it to Base64.
+4. Save your project. Don't close it as you will need it for the next section.
 
-## Troubleshooting
-###c ommon issues
+### Deploy Code to your DevKit Device
+1. Ensure your DevKit is connected to your Windows machine with the MX device workspace open. If the IoT Workbench Examples window pops up, you can close it.
+2. Ensure you have the correct COM port selected. The correct port will have `STMicroelectronics` beside it.
+
+![](https://devkitfiles.blob.core.windows.net/github/select-board.png)
+
+3. Press `F1` on your keyboard.
+4. Search for `IoT Workbench: Device` and select.
+5. From the Device Menu, select `Device Upload`.
+6. The code will compile and deploy to your device. Follow any prompts from the console if required. 
 
 
+## Testing the Solution
+1. Plug in your device and get your Device ID from the mini display. It will be 6 characters.
 
+![](https://devkitfiles.blob.core.windows.net/github/chip-id.png)
 
+2. Open your Web App in a new browser window. It should look like `https://mxchip-<your initials>.azurewebsites.net`
+3. The web site will request credentials to access, use the following:
+    * Username: `<Your 6 digit Device ID>`
+    * Password: `Azure`.
+  > [!ALERT] Make sure that your device is on, otherwise you won't see anything in the web page.
+4. You should now see your device on your dashboard.
 
+![](https://devkitfiles.blob.core.windows.net/github/complete-demo.png)
 
 # Contributing
 
