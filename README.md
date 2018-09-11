@@ -17,12 +17,12 @@ This tutorial will focus on setting up the required Azure services and consuming
 
 ## Environment Setup
 ### Prerequisites 
-1. Windows 10
-1. MXChip IoT DevKit AZ3166 ([Link](http://mxchip.com/az3166))
-1. Visual Studio 2017 or later ([Link](https://visualstudio.microsoft.com/)).
-1. Azure subscription ([Link](https://azure.microsoft.com/en-us/free/)).
-1. Twitter account ([Link](https://twitter.com/i/flow/signup))
-1. Yarn Package Manager ([Link](https://yarnpkg.com/en/docs/install#windows-stable))
+* Windows 10
+* MXChip IoT DevKit AZ3166 ([Link](http://mxchip.com/az3166))
+* Visual Studio 2017 or later ([Link](https://visualstudio.microsoft.com/)).
+* Azure subscription ([Link](https://azure.microsoft.com/en-us/free/)).
+* Twitter account ([Link](https://twitter.com/i/flow/signup))
+* Yarn Package Manager ([Link](https://yarnpkg.com/en/docs/install#windows-stable))
 
 All additional software that is required will be installed via the Install IoT DevKit Environment step later in the guide.
 
@@ -96,11 +96,11 @@ Consumer groups are used by applications to pull data from Azure IoT Hub. To add
 
 Create a Twitter App and get the following settings:
 1. Apply for a [Twitter developer account](https://developer.twitter.com/en/apply/user) and wait for approval.
-1. Once approved, you will be able to create new apps from [developer.twitter.com](https://developer.twitter.com/).
-1. Create a new App and provide the application details.
+2. Once approved, you will be able to create new apps from [developer.twitter.com](https://developer.twitter.com/).
+3. Create a new App and provide the application details.
   > [!NOTE] you can skip the callback url as we won't be using authentication.
   > [!NOTE] Follow [this link](https://developer.twitter.com/en/docs/basics/developer-portal/guides/apps) to get more information about creating Twitter Apps.
-1. Get the following information from the **Keys and Access Tokens** tab:
+4. Get the following information from the **Keys and Access Tokens** tab:
     * Consumer Key (API Key)
     * Consumer Secret (API Secret)
     * Access token: Create a new one with `Read and Write` access.
@@ -125,10 +125,10 @@ Create a Twitter App and get the following settings:
 
 ### Build the Frontend
 
-1. Open a **Terminal** window and navigate to `frontend/mx`.
+1. Open a **Command Prompt** window and navigate to `frontend/mx`.
 1. Run the following commands to output the frontend to a build directory:
-  * yarn install
-  * yarn build
+    * yarn install
+    * yarn build
 1. Create a **wwwroot** directory in `backend/MXApi` folder.
 1. Copy the contents of the **build** directory to `backend/MXApi/wwwroot`
 
@@ -137,15 +137,15 @@ Create a Twitter App and get the following settings:
 For the purposes of our demo, we'll be deploying directly from Visual Studio.
 
 1. Open **Visual Studio** from the Start Menu.
-1. Click **Open Project/Solution** and select `backend\MxDialBackend.sln`.
-1. Check your current connected account in the top right corner of Visual Studio.
+2. Click **Open Project/Solution** and select `backend\MxDialBackend.sln`.
+3. Check your current connected account in the top right corner of Visual Studio.
   > NOTE: Ensure you are signed in with the same credentials you used to sign in to Azure. This will connect Visual Studio to your Azure subscription.
-1. Right-click the MxApi project.
-1. Click **Publish**.
-1. Mark the option Select Existing.
-1. Click **Publish**.
-1. Select the Web App previously created.
-1. Click **OK** and wait for the deployment to complete. This step might take a few minutes.
+4. Right-click the MxApi project.
+5. Click **Publish**.
+6. Mark the option Select Existing.
+7. Click **Publish**.
+8. Select the Web App previously created.
+9. Click **OK** and wait for the deployment to complete. This step might take a few minutes.
 
 ## Deploying the Arduino Solution to the MX Chip.
 
@@ -158,7 +158,9 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 
 4. Hold down button B, push and release the reset button, and then release button B. Your IoT DevKit enters AP mode for configuring the Wi-Fi connection. The screen displays the service set identifier (SSID) of the IoT DevKit and the configuration portal IP address:
 
-![](https://devkitfiles.blob.core.windows.net/github/wifi-3.jpg)
+<p align="center">
+  <img src="https://devkitfiles.blob.core.windows.net/github/wifi-3.jpg"/>
+</p>
 
 5. Use a Web browser on a different Wi-Fi enabled device (computer or mobile phone) to connect to the IoT DevKit SSID displayed in the previous step. If it asks for a password, leave it empty.
 
@@ -170,7 +172,9 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 
 7. The IoT DevKit reboots in a few seconds. You then see the Wi-Fi name and assigned IP.
 
-![](https://devkitfiles.blob.core.windows.net/github/wifi-6.jpg)
+<p align="center">
+  <img src="https://devkitfiles.blob.core.windows.net/github/wifi-6.jpg"/>
+</p>
 
 ### Update the DevKit Solution
 
@@ -195,13 +199,15 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 ## Testing the Solution
 1. Plug in your device and get your Device ID from the mini display. It will be 6 characters.
 
-![](https://devkitfiles.blob.core.windows.net/github/chip-id.png)
+<p align="center">
+  <img src="https://devkitfiles.blob.core.windows.net/github/chip-id.png"/>
+</p>
 
 2. Open your Web App in a new browser window. It should look like `https://mxchip-<your initials>.azurewebsites.net`
 3. The web site will request credentials to access, use the following:
     * Username: `<Your 6 digit Device ID>`
     * Password: `Azure`.
-  > [!ALERT] Make sure that your device is on, otherwise you won't see anything in the web page.
+  > NOTE: Make sure that your device is on, otherwise you won't see anything in the web page.
 4. You should now see your device on your dashboard.
 
 ![](https://devkitfiles.blob.core.windows.net/github/complete-demo.png)
