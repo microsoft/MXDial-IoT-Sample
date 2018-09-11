@@ -41,7 +41,7 @@ const App = ({
 
   return (
     <Styled className="mx-demo">
-      <Header title="MXChip IoT Demo" />
+      <Header title="MX Dial Sample" />
       <main>
         <DeviceDashboard
           device={device}
