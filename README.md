@@ -147,7 +147,7 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 8. Select the Web App previously created.
 9. Click **OK** and wait for the deployment to complete. This step might take a few minutes.
 
-## Deploying the Arduino Solution to the MX Chip.
+## Deploying the Arduino Solution to the DevKit Device.
 
 ### Connect to WiFi
 1. Connect the Micro-USB end to the IoT DevKit.
