@@ -180,7 +180,7 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 
 1. Open VS Code then select `File > Open Workspace`.
 2. Navigate to the `mxdevice` directory from the source code and open the `project` Workspace.
-3. Open `config.h` and replace `<Web App URL>` with the Web App URL you created earlier. Ensure you do not modify `/api/mx/device-credentials/`. It should look like: `https://mxchip-<your initials>.azurewebsites.net/api/mx/device-credentials/`
+3. Open `config.h` and replace `<Web App URL>` with the Web App URL you created earlier. It should look like: `https://mxchip-<yourinitials>.azurewebsites.net/api/mx/device-credentials/`
 > NOTE: If you don’t have Arduino extension in VS Code installed, click the Install in the notification pane if prompted. If you modified your password in the web.config, you will need to convert it to Base64.
 4. Save your project. Don't close it as you will need it for the next section.
 
@@ -203,7 +203,7 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
   <img src="https://devkitfiles.blob.core.windows.net/github/chip-id.png"/>
 </p>
 
-2. Open your Web App in a new browser window. It should look like `https://mxchip-<your initials>.azurewebsites.net`
+2. Open your Web App in a new browser window. It should look like `https://mxchip-<yourinitials>.azurewebsites.net`
 3. The web site will request credentials to access, use the following:
     * Username: `<Your 6 digit Device ID>`
     * Password: `Azure`.
