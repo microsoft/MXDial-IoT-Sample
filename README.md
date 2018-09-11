@@ -18,11 +18,11 @@ This tutorial will focus on setting up the required Azure services and consuming
 ## Environment Setup
 ### Prerequisites 
 * Windows 10
-* MXChip IoT DevKit AZ3166 ([Link](http://mxchip.com/az3166))
-* Visual Studio 2017 or later ([Link](https://visualstudio.microsoft.com/)).
+* MXChip IoT DevKit AZ3166 ([Link](http://mxchip.com/az3166)).
+* Visual Studio 2017 (Community/Professional/Enterprise) or later ([Link](https://visualstudio.microsoft.com/)).
 * Azure subscription ([Link](https://azure.microsoft.com/en-us/free/)).
-* Twitter account ([Link](https://twitter.com/i/flow/signup))
-* Yarn Package Manager ([Link](https://yarnpkg.com/en/docs/install#windows-stable))
+* Twitter account ([Link](https://twitter.com/i/flow/signup)).
+* Yarn Package Manager ([Link](https://yarnpkg.com/en/docs/install#windows-stable)).
 
 All additional software that is required will be installed via the Install IoT DevKit Environment step later in the guide.
 
