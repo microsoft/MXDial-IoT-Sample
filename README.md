@@ -75,11 +75,11 @@ The Azure App Service is an integrated offering for building and hosting web app
 1. Click on *Next: Size and scale*.
     * Pricing and scale tier: select F1(Free tier) if available, otherwise select S1(Standard).
 1. Click on **Review + create**.
-1. Review your IoT hub information, then click **Create**. This process might take a few minutes.
+1. Review your IoT hub information, then click **Create**. This process might take a few moments.
 
 ### Add a Consumer Group to your IoT Hub
 
-Consumer groups are used by applications to pull data from Azure IoT Hub. To add a consumer group to your IoT hub, follow these steps:
+To add a consumer group to your IoT hub, follow these steps:
 
 1. In the Azure portal, go to **All Resources** in the left pane and **search** for your IoT Hub: `mxhub-<yourinitials>`.
 1. **Click** on the resource to open it.
@@ -90,7 +90,7 @@ Consumer groups are used by applications to pull data from Azure IoT Hub. To add
 
 1. Open your IoT Hub resource in Azure.
 1. In the left pane, click **Shared access policies** and select **iothubowner** on the middle pane.
-1. Copy the value of **Connection string—primary key** in a Notepad as you will need it later.
+1. Copy the value of **Connection string—primary key** into Notepad as you will need it later.
 
 ### Twitter Setup
 
@@ -98,14 +98,14 @@ Create a Twitter App and get the following settings:
 1. Apply for a [Twitter developer account](https://developer.twitter.com/en/apply/user) and wait for approval.
 2. Once approved, you will be able to create new apps from [developer.twitter.com](https://developer.twitter.com/).
 3. Create a new App and provide the application details.
-  > [!NOTE] you can skip the callback url as we won't be using authentication.
-  > [!NOTE] Follow [this link](https://developer.twitter.com/en/docs/basics/developer-portal/guides/apps) to get more information about creating Twitter Apps.
+  > NOTE: you can skip the callback url as we won't be using authentication.
+  > NOTE: Follow [this link](https://developer.twitter.com/en/docs/basics/developer-portal/guides/apps) to get more information about creating Twitter Apps.
 4. Get the following information from the **Keys and Access Tokens** tab:
     * Consumer Key (API Key)
     * Consumer Secret (API Secret)
-    * Access token: Create a new one with `Read and Write` access.
+    * Access token (create a new one with `Read and Write` access.)
     * Access token secret
-  > [!NOTE] Copy these values as you will need them later.
+  > NOTE: Copy these values into Notepad as you will need them later.
 
 ## Deploying the Web Application
 
@@ -129,7 +129,6 @@ Create a Twitter App and get the following settings:
 1. Run the following commands to output the frontend to a build directory:
     * yarn install
     * yarn build
-1. Create a **wwwroot** directory in `backend/MXApi` folder.
 1. Copy the contents of the **build** directory to `backend/MXApi/wwwroot`
 
 ### Deploy to Azure from Visual Studio
@@ -185,7 +184,7 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 4. Save your project. Don't close it as you will need it for the next section.
 
 ### Deploy Code to your DevKit Device
-1. Ensure your DevKit is connected to your Windows machine with the MX device workspace open. If the IoT Workbench Examples window pops up, you can close it.
+1. Ensure your DevKit is connected to your Windows machine and the `project` Workspace is open. If the IoT Workbench Examples window opens, you can close it.
 2. Ensure you have the correct COM port selected. The correct port will have `STMicroelectronics` beside it.
 
 ![](https://devkitfiles.blob.core.windows.net/github/select-board.png)
