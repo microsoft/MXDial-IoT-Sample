@@ -129,6 +129,7 @@ Create a Twitter App and get the following settings:
 1. Run the following commands to output the frontend to a build directory:
     * yarn install
     * yarn build
+1. Create a **wwwroot** directory in `backend/MXApi` folder.
 1. Copy the contents of the **build** directory to `backend/MXApi/wwwroot`
 
 ### Deploy to Azure from Visual Studio
