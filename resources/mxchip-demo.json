@@ -1,0 +1,169 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "contentVersion": "0.1.0.0",
+    "parameters": {
+        "iotHubName": {
+            "type": "string",
+            "defaultValue": "[concat('mxhub-', uniqueString(resourceGroup().id))]",
+            "metadata": {
+                "description": "Name of the IoT Hub to be provisioned."
+            }
+        },
+        "iotHubSku": {
+            "type": "string",
+            "allowedValues": [
+              "F1",
+              "S1",
+              "S2",
+              "S3"
+            ],
+            "defaultValue": "S1",
+            "metadata": {
+              "description": "SKUs for the IoT Hub (F1, S1, S2, S3)"
+            }
+      
+          },
+        "iotHubUnits": {
+            "type": "int",
+            "minValue": 1,
+            "defaultValue": 1,
+            "metadata": {
+              "description": "Number of IoT Hubs to be provisioned."
+            }
+        },
+        "iotD2cPartitions": {
+            "type": "int",
+            "minValue": 2,
+            "defaultValue": 2,
+            "metadata": {
+              "description": "Number of desired partitions for device-to-cloud events."
+            }
+          },
+        "iotHubConsumerGroup": {
+            "type": "string",
+            "defaultValue": "mxchip",
+            "metadata": {
+                "description": "Name of the consumer group in IoT Hub for web app."
+            }
+        },
+        "WebAppName": {
+            "type": "string",
+            "minLength": 1,
+            "defaultValue": "[concat('mxchip-', uniqueString(resourceGroup().id))]",
+            "metadata": {
+              "description": "Name of Web App."
+            }
+        },
+        "WebAppSvcPlanName": {
+            "type": "string",
+            "minLength": 1,
+            "defaultValue": "[concat('mxchip-demo-', uniqueString(resourceGroup().id))]",
+            "metadata": {
+              "description": "Name of App Service Plan."
+            }
+          },
+          "WebAppSvcPlanSKU": {
+            "type": "string",
+            "allowedValues": [
+              "Free",
+              "Shared",
+              "Basic",
+              "Standard"
+            ],
+            "defaultValue": "Standard",
+            "metadata": {
+              "description": "SKU for App Service Plan."
+            }
+          },
+          "WebAppSvcPlanWorkerSize": {
+            "type": "string",
+            "allowedValues": [
+              "0",
+              "1",
+              "2"
+            ],
+            "defaultValue": "0",
+            "metadata": {
+              "description": "Size of App Service Worker."
+            }
+          },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location for all resources deployment."
+              }
+        }
+    },
+    "variables": {
+        "apiVersion": "2016-02-03"
+      },
+    "resources": [
+        {
+            "name": "[parameters('WebAppSvcPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[parameters('location')]",
+            "apiVersion": "2014-06-01",
+            "dependsOn": [],
+            "tags": {
+              "displayName": "AppSvcPlan"
+            },
+            "properties": {
+              "name": "[parameters('WebAppSvcPlanName')]",
+              "sku": "[parameters('WebAppSvcPlanSKU')]",
+              "workerSize": "[parameters('WebAppSvcPlanWorkerSize')]",
+              "numberOfWorkers": 1
+            }
+        },
+        {
+            "name": "[parameters('WebAppName')]",     
+            "type": "Microsoft.Web/sites",     
+            "location": "[parameters('location')]",     
+            "apiVersion": "2015-08-01",     
+            "dependsOn": [    
+              "[concat('Microsoft.Web/serverfarms/', parameters('WebAppSvcPlanName'))]"
+            ],   
+            "tags": {   
+              "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('WebAppSvcPlanName'))]": "Resource",
+              "displayName": "WebApp"     
+            },    
+            "properties": {  
+              "name": "[parameters('WebAppName')]",
+              "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('WebAppSvcPlanName'))]"
+            }
+        },
+        {
+            "apiVersion": "2018-04-01",
+            "type": "Microsoft.Devices/IotHubs",
+            "name": "[parameters('iotHubName')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "eventHubEndpoints": {
+                    "events": {
+                        "retentionTimeInDays": 1,
+                        "partitionCount": "[parameters('iotD2cPartitions')]"
+                    }
+                }
+            },
+            "sku": {
+                "name": "[parameters('iotHubSku')]",
+                "capacity": "[parameters('iotHubUnits')]"
+            }
+        },
+        {
+            "apiVersion": "2016-02-03",
+            "dependsOn": [
+              "[concat('Microsoft.Devices/iothubs/', parameters('iotHubName'))]"
+            ],
+            "name": "[concat(parameters('iotHubName'), '/events/',parameters('iotHubConsumerGroup'))]",
+            "type": "Microsoft.Devices/iotHubs/eventhubEndpoints/ConsumerGroups"
+        }
+
+    ],
+    "outputs": {
+        "iotHubConnectionString": {
+            "value": "[listKeys(resourceId('Microsoft.Devices/iotHubs', parameters('iotHubName')), variables('apiVersion'))]",
+            "type": "object"
+        }
+    }
+}

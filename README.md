@@ -40,7 +40,7 @@ Alternatively, you can download the material directly: [Download Material](https
 
 ## Cloud Resources Setup
 
-> NOTE: If you would like to setup via ARM ... blah blah blah TODO.
+> NOTE: If you would like to setup the Azure resouces (next 3 steps) via ARM template, it is located at `./resources/mx-demo.json`. 
 
 > NOTE: Throughout this setup you will be asked to add `<your intials>` as a way of uniquely identifying the resource you are creating. In the unlikely event the resource name has been taken, just add another random letter until it becomes unique.
 
@@ -96,7 +96,7 @@ To add a consumer group to your IoT hub, follow these steps:
 
 ### Twitter Setup
 
-> NOTE: Twitter have recently updated how they manage developer accounts and they are need to be approved first. It is important to note that this can take some time and you will not be able to use Twitter integration until this process is completed. As a workaround - you can use random placeholder strings in the Twitter web.config settings so that your app compiles. Once your account is approved, you will need to replace these values and re-publish your Web App to Azure
+> NOTE: Twitter have recently updated how they manage developer accounts and they are need to be approved first. It is important to note that this can take some time and you will not be able to use Twitter integration until this process is completed. As a workaround - Leave the placeholder values in the `web.config` updates later in the lab. The integration will fail gracefully until you update the values and re-publish your Azure Web Application. 
 
 
 Create a Twitter App and get the following settings:
@@ -218,6 +218,11 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 4. You should now see your device on your dashboard.
 
 ![](https://devkitfiles.blob.core.windows.net/github/complete-demo.png)
+
+5. Your Twitter feed should look like the following.
+
+![](https://devkitfiles.blob.core.windows.net/github/twitter.png)
+
 
 # Contributing
 
