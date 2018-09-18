@@ -17,7 +17,7 @@ This tutorial will focus on setting up the required Azure services and consuming
 
 ## Environment Setup
 ### Prerequisites 
-* Windows 10
+* Windows 10.
 * MXChip IoT DevKit AZ3166 ([Link](http://mxchip.com/az3166)).
 * Visual Studio 2017 (Community/Professional/Enterprise) or later ([Link](https://visualstudio.microsoft.com/)).
 * Visual Studio Code (If you don't have this already, you will install it as part of the `Install IoT DevKit Environment` step, later in the guide).
