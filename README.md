@@ -116,7 +116,7 @@ Create a Twitter App and get the following settings:
 
 ### Update App Settings
 
-1. Go to **Visual Studio** and open the **Web.config** file which is located in the following location `.\MXDial-IoT-Sample\backend\MXApi\Web.config`.
+1. Open **Visual Studio 2017** and open the **Web.config** file which is located in the following location `.\MXDial-IoT-Sample\backend\MXApi\Web.config`.
 1. Add the connection string for the IoT Hub:
     * IoTHubConnectionString: `<your IoT Hub connection string>`
 1. Use the information previously obtained to complete the settings that will be used to connect to your twitter:
@@ -141,7 +141,7 @@ Create a Twitter App and get the following settings:
 
 For the purposes of our demo, we'll be deploying directly from Visual Studio.
 
-1. Open **Visual Studio** from the Start Menu.
+1. Open **Visual Studio 2017** from the Start Menu.
 2. Click **Open Project/Solution** and select `backend\MxDialBackend.sln`.
 3. Check your current connected account in the top right corner of Visual Studio.
   > NOTE: Ensure you are signed in with the same credentials you used to sign in to Azure. This will connect Visual Studio to your Azure subscription.
