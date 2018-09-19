@@ -161,6 +161,9 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 > NOTE: Please ensure your MX Chip has the latest firmware. You can follow the instructions here: [Firmware Upgrade](https://microsoft.github.io/azure-iot-developer-kit/docs/firmware-upgrading/).
 
 ### Connect to WiFi
+
+> NOTE: The MX AZ3166 Device only support basic authentication. Therefore, some corporate networks may not work correctly. One way of verifying this is connecting to a personal hotspot on your mobile device. This method should always work.
+
 1. Connect the Micro-USB end to the IoT DevKit.
 1. Connect the USB end to your computer.
 1. The green LED for power confirms the connection.
