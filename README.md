@@ -193,7 +193,7 @@ For the purposes of our demo, we'll be deploying directly from Visual Studio.
 
 ### Deploy Code to your DevKit Device
 1. Ensure your DevKit is connected to your Windows machine and the `project` Workspace is open. If the IoT Workbench Examples window opens, you can close it.
-2. Ensure you have the correct COM port selected. The correct port will have `STMicroelectronics` beside it.
+2. Ensure you have the correct COM port selected. The correct port will have `STMicroelectronics` beside it. You can access the dropdown by clicking `COM<number>`in the bottom right of VS Code.
 
 ![](https://devkitfiles.blob.core.windows.net/github/select-board.png)
 
