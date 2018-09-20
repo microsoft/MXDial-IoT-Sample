@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\jamiewilbraham\\AppData\\Local\\Arduino15\\packages\\AZ3166\\tools\\**",
+                "C:\\Users\\jamiewilbraham\\AppData\\Local\\Arduino15\\packages\\AZ3166\\hardware\\stm32f4\\1.4.0\\**"
+            ],
+            "forcedInclude": [
+                "C:\\Users\\jamiewilbraham\\AppData\\Local\\Arduino15\\packages\\AZ3166\\hardware\\stm32f4\\1.4.0\\cores\\arduino\\Arduino.h"
+            ],
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}

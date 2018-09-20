@@ -1,0 +1,50 @@
+:root {
+  font-size: 100%;
+  font-family: SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+button {
+  border: 0 none;
+  padding: 0;
+  background-color: transparent;
+}
+button:focus,
+input[type="text"],
+input[type="tel"],
+input[type="submit"] {
+  outline: 0 none;
+}
+
+input[type='text']:-webkit-autofill {
+  -webkit-text-fill-color: #c7c7c7 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+@keyframes alarm {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
