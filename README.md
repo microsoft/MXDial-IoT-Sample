@@ -23,7 +23,7 @@ This tutorial will focus on setting up the required Azure services and consuming
 * Visual Studio Code (If you don't have this already, you will install it as part of the `Install IoT DevKit Environment` step, later in the guide).
 * Azure subscription ([Link](https://azure.microsoft.com/en-us/free/)).
 * Twitter account ([Link](https://twitter.com/i/flow/signup)).
-* Yarn Package Manager ([Link](https://yarnpkg.com/en/docs/install#windows-stable)).
+* Yarn Package Manager - requires node.js ([Link](https://yarnpkg.com/en/docs/install#windows-stable)).
 
 All additional software that is required will be installed via the Install IoT DevKit Environment step later in the guide.
 
