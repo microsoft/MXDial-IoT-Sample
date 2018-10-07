@@ -35,11 +35,14 @@ Alternatively, you can download the material directly: [Download Material](https
 
 ### Install IoT DevKit Environment
 
- To install the DevKit environment, follow the [Install Development Environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) online guide. 
+> IMPORTANT: Only complete the following two sections!! DO NOT complete the "Build your first project" section!
 
- Also, you will need to complete the [ST-Link configuration](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#st-link-configuration)
+ 1. [Install Development Environment](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#install-development-environment) (NOTE: In step 1 - Ensure to use the following [Windows Installer](https://www.arduino.cc/download_handler.php?f=/arduino-1.8.7-windows.exe))
 
-> NOTE: Only complete the above two sections.
+
+
+ 2. [ST-Link configuration](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/#st-link-configuration)
+
 
 
 ## Cloud Resources Setup
@@ -107,7 +110,10 @@ Create a Twitter App and get the following settings:
 1. Apply for a [Twitter developer account](https://developer.twitter.com/en/apply/user) and wait for approval.
 2. Once approved, you will be able to create new apps from [developer.twitter.com](https://developer.twitter.com/).
 3. Create a new App and provide the application details.
-  > NOTE: you can skip the callback url as we won't be using authentication.
+  > NOTE: You can skip the callback url as we won't be using authentication.
+
+  > NOTE: Website URL should be the same as the Azure Web App you created earlier. For example, `https://mxchip-<your initials>.azurewebsites.net`
+
   > NOTE: Follow [this link](https://developer.twitter.com/en/docs/basics/developer-portal/guides/apps) to get more information about creating Twitter Apps.
 4. Get the following information from the **Keys and Access Tokens** tab:
     * Consumer Key (API Key)
