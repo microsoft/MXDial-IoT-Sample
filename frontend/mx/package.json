@@ -6,7 +6,7 @@
     "react-scripts": "facebook/create-react-app:next"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.2",
     "classnames": "^2.2.5",
     "common": "0.0.1",
     "copyfiles": "^2.0.0",
